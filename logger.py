@@ -1,16 +1,14 @@
-import csv
+import pandas as pd
 
 class UserData:
 
-    def __init__(self,DataDict):
-        self.__DataDict = DataDict
+    def __init__(self):
+        self.DataCSV = pd.read_csv("DataUser.csv")
 
-    def PrintData():
-        print(*self.__DataDict)
-
-    def InputData():
-        return self.__DataDict
-
-    def UpdateUserData():
-        with open("DataUser.csv",encoding='utf-8') as r_file:
-            
+    def OutputData(self, DataHaed = "Full"):
+        if DataHaed == "Head":
+            return self.DataCSV.columns.tolist()
+        else: return self.DataCSV.head()
+    
+    def InputData(DataToSave):
+        pass
