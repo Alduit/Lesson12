@@ -15,8 +15,7 @@ class UserData:
             return self.DataCSV.loc[RowIndex]
             
     
-    #Блок сохранения данных
+    #Блок сохранение\изменение данных
     def InputData(self,DataToSave): self.DataCSV.loc[ len(self.DataCSV.index )] = DataToSave
-    def SaveData(self): 
-        self.DataCSV.to_csv("DataUser.csv",index=False)
-        
+    def RowEdit(self,RowIndex,RowList): self.DataCSV.loc[RowIndex] = RowList
+    def SaveData(self): self.DataCSV.to_csv("DataUser.csv",index=False)

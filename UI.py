@@ -14,8 +14,7 @@ def interface():
         match command:
             case 1: print(UD.OutputData())
             case 2: InputData()
-            case 3:
-                pass
+            case 3: DataChange()
             case 4:
                 pass
             case 5: UD.SaveData()
@@ -23,6 +22,24 @@ def interface():
                 StartProg = False
 
 def InputData():
+    UD.InputData(InputCheck())
+
+
+def DataChange():
+    DataRowID = 1
+    RowMax = UD.OutputData().shape[0]
+    CheckWhileTrue = True
+    while CheckWhileTrue:
+        DataRowID = int(input("Введите код строки которую необходимо изменить - "))
+        if DataRowID > RowMax or DataRowID < 0:
+            print("Неправильный ввод")
+        else:
+            CheckWhileTrue = False
+
+    UD.RowEdit(DataRowID,InputCheck())
+    
+    
+def InputCheck():
     DataRow = list()
     HeadList = UD.OutputData("Head")
     CheckWhileTrue = True
@@ -34,7 +51,6 @@ def InputData():
             print("Неправильный ввод")
         else: 
             CheckWhileTrue = False
-            UD.InputData(DataRow)
             print(f"Сохранены следующие изменения:\n{HeadList}\n{DataRow}")
-                
+            return DataRow
                 
