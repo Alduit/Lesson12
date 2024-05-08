@@ -5,10 +5,18 @@ class UserData:
     def __init__(self):
         self.DataCSV = pd.read_csv("DataUser.csv")
 
-    def OutputData(self, DataHaed = "Full"):
-        if DataHaed == "Head":
+    #Блок вывода таблицы или её частей
+    def OutputData(self, OutputMethod = "Full",RowIndex = 0):
+        if OutputMethod == "Full": 
+            return self.DataCSV.head()
+        elif OutputMethod == "Head":
             return self.DataCSV.columns.tolist()
-        else: return self.DataCSV.head()
+        elif OutputMethod == "Row":
+            return self.DataCSV.loc[RowIndex]
+            
     
-    def InputData(DataToSave):
-        pass
+    #Блок сохранения данных
+    def InputData(self,DataToSave): self.DataCSV.loc[ len(self.DataCSV.index )] = DataToSave
+    def SaveData(self): 
+        self.DataCSV.to_csv("DataUser.csv",index=False)
+        
